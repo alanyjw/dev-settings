@@ -9,10 +9,10 @@ alias 'gsa'='git stash apply'
 alias 'gcom'='git checkout master'
 alias 'gpull'='git pull origin master'
 alias 'gpush'='git push origin master'
-function gcob() { git checkout $1 }
-function gconb() { git checkout -b $1 }
-function gss() { git stash save $1 }
-function gcm() { git commit -m $1 }
+function gcob() { git checkout $1; }
+function gconb() { git checkout -b $1; }
+function gss() { git stash save $1; }
+function gcm() { git commit -m $1; }
 
 # Ask for confirmation before performing these actions
 alias 'cp'='cp -i'
