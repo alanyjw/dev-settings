@@ -64,7 +64,13 @@ function display_branch {
     dir="$(dirname "$dir")"
   done
 }
-PS1="\w \$(display_branch)\$ "
+
+# Enable Git prompt
+if [ -f `brew --prefix git`/etc/bash_completion.d/git-prompt.sh ]; then
+  . `brew --prefix git`/etc/bash_completion.d/git-prompt.sh
+  PS1="\w \$(display_branch)\$ "
+fi
+
 
 # Put /usr/local/bin first in path
 export PATH=/usr/local/bin:$PATH
