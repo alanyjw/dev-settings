@@ -2,7 +2,7 @@
 alias 'gg'='git gui &'
 alias 'gka'='gitk --all &'
 alias 'gl'='git log'
-alias 'gs'='git status'
+alias 'gst'='git status'
 alias 'gsl'='git stash list'
 alias 'gsk'='git stash --keep-index'
 alias 'gsa'='git stash apply'
