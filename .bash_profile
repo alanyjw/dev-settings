@@ -71,9 +71,14 @@ if [ -f `brew --prefix git`/etc/bash_completion.d/git-prompt.sh ]; then
   PS1="\w \$(display_branch)\$ "
 fi
 
+# Loads RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # Put /usr/local/bin first in path
 export PATH=/usr/local/bin:$PATH
+
+# Put distutils first
+export PATH=/usr/local/share/python:$PATH
 
 # Remove duplicates from path
 export PATH=`awk -F: '{for(i=1;i<=NF;i++){if(!($i in a)){a[$i];printf s$i;s=":"}}}'<<<$PATH`;
