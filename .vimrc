@@ -8,6 +8,18 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 "Rebind <leader> key
 let mapleader = ","
 
+"Code foldings
+"set foldmethod=indent
+"set foldnestmax=2
+nnoremap <space> za
+vnoremap <space> zf
+
+"Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 "Removes highlight of last search term
 noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
@@ -41,9 +53,9 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=233
 
 "For setting tab width and changing tabs to spaces
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set shiftround
 set expandtab
 
@@ -96,4 +108,10 @@ call pathogen#helptags()
 set laststatus=2
 
 "Settings for python-mode
-let g:pymode_folding = 0
+" mkdir -p bundle && cd bundle
+" git clone git://github.com/klen/python-mode.git
+let g:pymode_breakpoint=1
+
+"Natural split opening
+set splitbelow
+set splitright
