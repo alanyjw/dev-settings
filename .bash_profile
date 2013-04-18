@@ -14,6 +14,9 @@ function gconb() { git checkout -b $1; }
 function gss() { git stash save $1; }
 function gcm() { git commit -m $1; }
 
+# Search for files (case-insensitive)
+function fname() { find . -iname "*$@*"; }
+
 # Ask for confirmation before performing these actions
 alias 'cp'='cp -i'
 alias 'mv'='mv -i'
@@ -26,6 +29,9 @@ export EDITOR='vim';
 ## For dark background
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+# Show colors for grep match results
+export GREP_OPTIONS='--color=auto'
 
 ## For light background
 # export CLICOLOR=1
@@ -74,8 +80,11 @@ fi
 # Loads RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+# Adds npm binaries to path
+export PATH=/usr/local/share/npm/bin:$PATH
+
 # Put /usr/local/bin first in path
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # Put distutils first
 export PATH=/usr/local/share/python:$PATH
