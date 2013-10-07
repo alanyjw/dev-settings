@@ -22,60 +22,24 @@ alias 'cp'='cp -i'
 alias 'mv'='mv -i'
 alias 'rm'='rm -i'
 
+# List all files in human-readable, long format
+alias 'll'='ls -alh'
+
 # Make vim the default system editor
 export EDITOR='vim';
-
-# Show colors for terminal
-## For dark background
-export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Show colors for grep match results
 export GREP_OPTIONS='--color=auto'
 
-## For light background
-# export CLICOLOR=1
-# export LSCOLORS=ExFxBxDxCxegedabagacad
+. $HOME/.git-completion.sh
+. $HOME/.git-prompt.sh
 
-# Use git command completion
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-. `brew --prefix`/etc/bash_completion.d/git-completion.bash
-fi
+# git completion options
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUPSTREAM="auto"
 
-# Show branch name in prompt
-function display_branch {
-  local dir="$PWD"
-  local vcs
-  local nick
-  while [[ "$dir" != "/" ]]; do
-    for vcs in git hg svn bzr; do
-      if [[ -d "$dir/.$vcs" ]] && hash "$vcs" &>/dev/null; then
-        case "$vcs" in
-          git) __git_ps1 "${1:-[%s]}"; return;;
-          hg) nick=$(hg branch 2>/dev/null);;
-          svn) nick=$(svn info 2>/dev/null\
-                | grep -e '^Repository Root:'\
-                | sed -e 's#.*/##');;
-          bzr)
-            local conf="${dir}/.bzr/branch/branch.conf" # normal branch
-            [[ -f "$conf" ]] && nick=$(grep -E '^nickname =' "$conf" | cut -d' ' -f 3)
-            conf="${dir}/.bzr/branch/location" # colo/lightweight branch
-            [[ -z "$nick" ]] && [[ -f "$conf" ]] && nick="$(basename "$(< $conf)")"
-            [[ -z "$nick" ]] && nick="$(basename "$(readlink -f "$dir")")";;
-        esac
-        [[ -n "$nick" ]] && printf "${1:-[%s]}" "$nick"
-        return 0
-      fi
-    done
-    dir="$(dirname "$dir")"
-  done
-}
-
-# Enable Git prompt
-if [ -f `brew --prefix git`/etc/bash_completion.d/git-prompt.sh ]; then
-  . `brew --prefix git`/etc/bash_completion.d/git-prompt.sh
-  PS1="\w \$(display_branch)\$ "
-fi
+# show branch name in the prompt
+PS1='\W $(__git_ps1 "[%s]")\$ '
 
 # Loads RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -86,8 +50,13 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # Put /usr/local/bin first in path
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
-# Put distutils first
-export PATH=/usr/local/share/python:$PATH
-
 # Remove duplicates from path
 export PATH=`awk -F: '{for(i=1;i<=NF;i++){if(!($i in a)){a[$i];printf s$i;s=":"}}}'<<<$PATH`;
+
+export PATH=/Users/yeojw10/bin/Sencha/Cmd/3.1.2.342:$PATH
+
+export SENCHA_CMD_3_0_0="/Users/yeojw10/bin/Sencha/Cmd/3.1.2.342"
+
+export PATH=${PATH}:/Users/yeojw10/Code/adt-bundle/sdk/platform-tools:/Users/yeojw10/Code/adt-bundle/sdk/tools
+
+[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
