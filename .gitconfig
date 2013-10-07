@@ -18,3 +18,8 @@
   untracked = cyan
 [alias]
   hgp = show --format=\"From: %an <%ae>%n%s%n%b\" -U8
+  co = checkout
+  st = status -sb
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+[mergetool]
+  keepbackup = false
